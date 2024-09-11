@@ -23,5 +23,15 @@ public class CakeRepository {
         return db.get(0);
     }
 
-    public CakeEntity
+    public CakeEntity create(CakeEntity cakeEntity){
+        return cakeEntity;
+    }
+
+    public void update(UUID cakeId , CakeEntity newCakeEntity){
+        newCakeEntity.setId(cakeId);
+    }
+
+    public void delete(UUID cakeId){
+        //without body
+    }
 }
