@@ -1,18 +1,20 @@
-package by.clevertec.service;
+package by.clevertec.service.service;
 
+import by.clevertec.commom.helper.DataSupplier;
+import by.clevertec.commom.helper.DataSupplierImpl;
 import by.clevertec.domain.Cake;
 import by.clevertec.entity.CakeEntity;
 import by.clevertec.exeption.CakeNotFoundException;
 import by.clevertec.mapper.CakeMapper;
 import by.clevertec.repository.CakeRepository;
 
+import by.clevertec.service.CakeService;
+import by.clevertec.service.util.DataSupplierTest;
 import by.clevertec.service.util.TestData;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -21,7 +23,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +31,8 @@ class CakeServiceTest {
     private CakeRepository cakeRepository;
     @Mock
     private CakeMapper cakeMapper;
+    @Spy
+    private DataSupplier dataSupplier = new DataSupplierTest();
     @InjectMocks
     private CakeService cakeService;
 

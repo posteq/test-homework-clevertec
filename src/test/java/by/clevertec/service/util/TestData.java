@@ -12,6 +12,6 @@ public class TestData {
                 UUID.randomUUID(),
                 "cake",
                 CakeType.SMALL,
-                OffsetDateTime.now().plusDays(3));
+                OffsetDateTime.now());
     }
 }
