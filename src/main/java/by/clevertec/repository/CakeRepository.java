@@ -5,6 +5,7 @@ import by.clevertec.entity.CakeEntity;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class CakeRepository {
@@ -19,8 +20,8 @@ public class CakeRepository {
         return db;
     }
 
-    public CakeEntity getCakeById(UUID cakeId){
-        return db.get(0);
+    public Optional<CakeEntity> getCakeById(UUID cakeId){
+        return Optional.of(db.get(0));
     }
 
     public CakeEntity create(CakeEntity cakeEntity){
