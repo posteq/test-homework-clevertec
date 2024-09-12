@@ -27,8 +27,8 @@ public class CakeRepository {
         return cakeEntity;
     }
 
-    public void update(UUID cakeId , CakeEntity newCakeEntity){
-        newCakeEntity.setId(cakeId);
+    public CakeEntity update(UUID cakeId , CakeEntity newCakeEntity){
+        return newCakeEntity;
     }
 
     public void delete(UUID cakeId){
