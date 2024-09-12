@@ -8,15 +8,18 @@ import by.clevertec.exeption.CakeNotFoundException;
 import by.clevertec.mapper.CakeMapper;
 import by.clevertec.repository.CakeRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class CakeService {
-    private CakeRepository cakeRepository;
-    private CakeMapper cakeMapper;
-    private DataSupplier dataSupplier;
+    private final CakeRepository cakeRepository;
+    private final CakeMapper cakeMapper;
+    private final DataSupplier dataSupplier;
 
     public List<Cake> getCakes() {
         List<CakeEntity> cakes = cakeRepository.getCakes().stream()

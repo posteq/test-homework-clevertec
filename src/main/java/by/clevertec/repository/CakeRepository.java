@@ -2,12 +2,14 @@ package by.clevertec.repository;
 
 import by.clevertec.commom.CakeType;
 import by.clevertec.entity.CakeEntity;
+import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public class CakeRepository {
     public static final  List<CakeEntity> db = List.of(
             new CakeEntity(UUID.randomUUID(),"cake1", CakeType.BIG, OffsetDateTime.now()),
