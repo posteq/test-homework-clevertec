@@ -11,5 +11,8 @@ public class CakeNotFoundException extends  RuntimeException{
                 String.format("Cake not found by id %s ", cakeId)
         );
     }
+    public static CakeNotFoundException byCake(){
+        return new CakeNotFoundException("Cake not found ");
+    }
 
 }

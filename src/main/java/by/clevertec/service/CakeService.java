@@ -1,13 +1,11 @@
 package by.clevertec.service;
 
 import by.clevertec.commom.helper.DataSupplier;
-import by.clevertec.commom.helper.DataSupplierImpl;
 import by.clevertec.domain.Cake;
 import by.clevertec.entity.CakeEntity;
 import by.clevertec.exeption.CakeNotFoundException;
 import by.clevertec.mapper.CakeMapper;
 import by.clevertec.repository.CakeRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +22,6 @@ public class CakeService {
     public List<Cake> getCakes() {
         List<CakeEntity> cakes = cakeRepository.getCakes().stream()
                 .filter(cake -> cake.getExpiredPeriod().isAfter(dataSupplier.getCurrentDataTime()))
-//                .collect(Collectors.toList());
                 .toList();
         return cakeMapper.toDomains(cakes);
     }
@@ -43,7 +40,8 @@ public class CakeService {
 
     public Cake update(UUID cakeId, Cake newCake) {
         CakeEntity cakeEntity = cakeMapper.toEntity(newCake);
-        CakeEntity updateEntity = cakeRepository.update(cakeId, cakeEntity);
+        CakeEntity updateEntity = cakeRepository.update(cakeId, cakeEntity)
+                .orElseThrow(CakeNotFoundException::byCake);
         return cakeMapper.toDomain(updateEntity);
     }
 

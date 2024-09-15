@@ -2,6 +2,7 @@ package by.clevertec.repository;
 
 import by.clevertec.commom.CakeType;
 import by.clevertec.entity.CakeEntity;
+import by.clevertec.exeption.CakeNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Repository
 public class CakeRepository {
-    public static final  List<CakeEntity> db = List.of(
+    public static List<CakeEntity> db = List.of(
             new CakeEntity(UUID.randomUUID(),"cake1", CakeType.BIG, OffsetDateTime.now()),
             new CakeEntity(UUID.randomUUID(),"cake2", CakeType.BIG, OffsetDateTime.now()),
             new CakeEntity(UUID.randomUUID(),"cake3", CakeType.BIG, OffsetDateTime.now()),
@@ -23,18 +24,22 @@ public class CakeRepository {
     }
 
     public Optional<CakeEntity> getCakeById(UUID cakeId){
-        return Optional.of(db.get(0));
+        return db.stream()
+                .filter(cakeEntity -> cakeEntity.getId().equals(cakeId))
+                .findFirst();
     }
 
     public CakeEntity create(CakeEntity cakeEntity){
         return cakeEntity;
     }
 
-    public CakeEntity update(UUID cakeId , CakeEntity newCakeEntity){
-        return newCakeEntity;
+    public Optional<CakeEntity> update(UUID cakeId , CakeEntity newCakeEntity){
+        return Optional.of(newCakeEntity.setId(cakeId));
     }
 
     public void delete(UUID cakeId){
-        //without body
+        CakeEntity cakeEntity = getCakeById(cakeId)
+                .orElseThrow(() -> CakeNotFoundException.byCakeId(cakeId));
+        db.remove(cakeEntity);
     }
 }

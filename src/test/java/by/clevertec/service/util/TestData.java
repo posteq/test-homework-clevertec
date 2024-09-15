@@ -1,6 +1,7 @@
 package by.clevertec.service.util;
 
 import by.clevertec.commom.CakeType;
+import by.clevertec.domain.Cake;
 import by.clevertec.entity.CakeEntity;
 
 import java.time.OffsetDateTime;
@@ -11,6 +12,14 @@ public class TestData {
         return new CakeEntity(
                 UUID.randomUUID(),
                 "cake",
+                CakeType.SMALL,
+                OffsetDateTime.now());
+    }
+
+    public static Cake generateCake(){
+        return new Cake(
+                UUID.randomUUID(),
+                "cakeTest",
                 CakeType.SMALL,
                 OffsetDateTime.now());
     }
